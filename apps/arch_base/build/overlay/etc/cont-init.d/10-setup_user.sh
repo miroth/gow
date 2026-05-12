@@ -19,8 +19,8 @@ if [[ "${UNAME}" != "root" ]]; then
 
     groupadd -f -g "${PGID}" ${UNAME}
     useradd -m -d ${HOME} -u "${PUID}" -g "${PGID}" -G wheel,input -s /bin/bash ${UNAME} -p $(openssl passwd -6 'lupus')
-    echo "%wheel ALL=(ALL:ALL) ALL" > /etc/sudoers.d/10-wheel
-    echo "${UNAME} ALL=(ALL:ALL) ALL" > /etc/sudoers.d/20-retro
+    #echo "%wheel ALL=(ALL:ALL) ALL" > /etc/sudoers.d/10-wheel
+    #echo "${UNAME} ALL=(ALL:ALL) ALL" > /etc/sudoers.d/20-retro
 
 
     gow_log "Setting umask to ${UMASK}"

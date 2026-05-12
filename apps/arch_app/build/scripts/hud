@@ -2,7 +2,7 @@
 
 # ENVS="$ENVS ENABLE_VKBASALT=1"
 # ENVS="$ENVS VKBASALT_CONFIG_FILE=/home/vkBasalt.conf"
-ENVS="$ENVS MANGOHUD_CONFIGFILE=/home/retro/.config/MangoHud/MangoHud.conf"
+ENVS="$ENVS MANGOHUD_CONFIGFILE=/opt/gow/MangoHud.conf"
 
 exec env $ENVS mangohud "$@"
 

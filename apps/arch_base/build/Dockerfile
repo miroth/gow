@@ -30,6 +30,9 @@ pacman -Syy
 echo "**** Install certificates ****"
 pacman -S --noconfirm ca-certificates
 
+echo "**** Update system ****"
+pacman -Syu --noconfirm
+
 echo "**** Install base packages ****"
 pacman -S --noconfirm \
     fuse \
@@ -58,7 +61,6 @@ yes | pacman -S bubblewrap-suid
 echo "**** Section cleanup ****"
 pacman -Scc --noconfirm
 
-echo
 _INSTALL_PACKAGES
 
 # Import overlay

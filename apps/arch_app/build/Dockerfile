@@ -10,6 +10,7 @@ ARG REQUIRED_PACKAGES="\
     xorg-xdpyinfo \
     pulseaudio \
     mesa mesa-utils vulkan-mesa-layers vulkan-mesa-implicit-layers \
+    nvidia-utils lib32-nvidia-utils nvidia-open nvtop linux-firmware-nvidia linux-firmware-amdgpu \
     vulkan-dzn vulkan-tools vulkan-headers vulkan-radeon vulkan-icd-loader vkd3d glu \
     lib32-mesa lib32-mesa-utils lib32-vulkan-mesa-layers lib32-vulkan-mesa-implicit-layers \
     lib32-vulkan-dzn lib32-vulkan-radeon lib32-vulkan-icd-loader lib32-vkd3d lib32-glu \
@@ -44,7 +45,7 @@ COPY --chmod=755 scripts/hud /usr/bin/hud
 RUN mkdir -p ${HOME}/.config && \
     chown -R ${PUID}:${PGID} ${HOME}
 
-COPY --chmod=777 --chown=${PUID}:${PGID} configs/mangohud/MangoHud.conf ${HOME}/.config/MangoHud/MangoHud.conf
+COPY --chmod=777 --chown=${PUID}:${PGID} configs/mangohud/MangoHud.conf /opt/gow/MangoHud.conf
 
 
 # Add /usr/games/ to $PATH in order to be able to run gamescope
