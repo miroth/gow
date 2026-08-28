@@ -45,7 +45,9 @@ pacman -S --noconfirm \
     git \
     base-devel
 
+_INSTALL_PACKAGES
 
+RUN <<_GOSU
 echo "**** Install gosu ****"
 wget --progress=dot:giga \
     -O /usr/bin/gosu \
@@ -55,13 +57,20 @@ chmod +x /usr/bin/gosu
 echo "**** Verify gosu works ****"
 gosu nobody true && echo "Working!"
 
-echo "**** Replace bubblewrap with suid version ****"
-yes | pacman -S bubblewrap-suid
+_GOSU
 
+RUN <<_BUBBLEWRAP
+echo "**** Replace bubblewrap with suid version ****"
+#yes | pacman -S bubblewrap-suid
+
+_BUBBLEWRAP
+
+RUN <<_CLEANUP
 echo "**** Section cleanup ****"
 pacman -Scc --noconfirm
 
-_INSTALL_PACKAGES
+_CLEANUP
+
 
 # Import overlay
 COPY overlay /
