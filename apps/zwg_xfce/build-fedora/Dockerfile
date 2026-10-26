@@ -7,6 +7,10 @@ FROM ${BASE_APP_IMAGE}
 ENV BUILD_ARCHITECTURE=amd64
 ARG HEROIC_VERSION=2.22.1
 
+RUN dnf install -y \
+    https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
+    https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+
 # NOTE: do not insert `# ... \` comments between continued lines — bash treats
 # them as a comment that swallows the continuation, which breaks `dnf install`.
 RUN dnf install -y \
@@ -29,9 +33,19 @@ RUN dnf install -y \
         dconf \
         firefox \
         wine \
+        wine.i686 \
         wine-mono \
         mingw32-wine-gecko \
-        mingw32-wine-gecko \
+        mingw64-wine-gecko \
+        mesa-vulkan-drivers \
+        mesa-dri-drivers \
+        mesa-dri-drivers.i686 \
+        mesa-libGL \
+        vulkan-loader \
+        vulkan-loader.i686 \
+        xorg-x11-drv-nvidia-libs.i686 \
+        mesa-libGL.i686 \
+        mesa-vulkan-drivers.i686 \
     && { dnf remove -y foot 2>/dev/null || true; } \
     && rm -f /etc/xdg/autostart/xscreensaver.desktop \
     && dnf clean all
